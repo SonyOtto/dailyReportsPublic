@@ -5,25 +5,32 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-
-
 public class api {
+
+    private static String ID = "this is PSString";
+
     public static void main(String[] args) throws Exception {
-        URL apiURL = new URL("http://www.strokypozovnoidavnosti.in.ua/api/product/read_one.php?article=888");
+        dublicater1("888");
+    }
+
+    public static String dublicater1 (String arg1) throws Exception {
+
+        URL apiURL = new URL("http://www.strokypozovnoidavnosti.in.ua/api/product/read_one.php?article="+arg1);
         URLConnection yc = apiURL.openConnection();
         BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
-        String inputLine;
-        String inputLine1 = "{ \"id\": \"Alice\"}";
-        while ((inputLine = in.readLine()) != null)
-            System.out.println(inputLine);
-        in.close();
+        //String inputLine = in.readLine();
+        String inputLine = "{}";
+        System.out.println("Всё что с JSON пришло: "+inputLine);
+                in.close();
 
         try {
-            JSONObject obj = new JSONObject(inputLine1); //comment
-            String emailBody = obj.getString("id");
-            System.out.println(emailBody);
+            JSONObject obj = new JSONObject(inputLine); //comment
+            String ID1 = obj.getString("id");
+            System.out.println("ID: "+ID1);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return(arg1);
     }
 }
