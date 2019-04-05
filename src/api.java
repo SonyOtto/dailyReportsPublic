@@ -1,4 +1,4 @@
-import org.json.*;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -18,19 +18,15 @@ public class api {
         URL apiURL = new URL("http://www.strokypozovnoidavnosti.in.ua/api/product/read_one.php?article="+arg1);
         URLConnection yc = apiURL.openConnection();
         BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
-        //String inputLine = in.readLine();
-        String inputLine = "{}";
+        String inputLine = in.readLine();
+        //String inputLine = "{\"id\" : \"Alice\"}";
         System.out.println("Всё что с JSON пришло: "+inputLine);
                 in.close();
 
-        try {
             JSONObject obj = new JSONObject(inputLine); //comment
             String ID1 = obj.getString("id");
             System.out.println("ID: "+ID1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        return(arg1);
+        return(ID1);
     }
 }
