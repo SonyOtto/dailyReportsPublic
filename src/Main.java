@@ -10,20 +10,21 @@ public class Main {
                 Pattern pattern1 = Pattern.compile("Всего за сегодня было отработано\\s[0-9]+([,.][0-9]{1,2})?");
                 Matcher matcher = pattern1.matcher(text);
                 while (matcher.find()) {
-                    System.out.println(text.substring(matcher.start(), matcher.end()));
                     String dailyHours = text.substring(matcher.start(), matcher.end());
-                    System.out.println(dailyHours);
+                    System.out.println("Daily worked: " + dailyHours);
 
                 }
                 Pattern pattern2 = Pattern.compile("888 Holdings - Poker -\\s[0-9]+([,.][0-9]{1,2})?");
                 Matcher matcher2 = pattern2.matcher(text);
                 while (matcher2.find()) {
-                    System.out.println(text.substring(matcher2.start(), matcher2.end()));
+                    String hoursPerProject = text.substring(matcher2.start(), matcher2.end());
+                    System.out.println("Worked per Project: " + hoursPerProject);
                 }
                 Pattern pattern3 = Pattern.compile("Task\\s([0-9]+([,.][0-9]{1,2})?):[a-zA-Z_0-9|\\s|\\p{Punct}]*");
                 Matcher matcher3 = pattern3.matcher(text);
                 while (matcher3.find()) {
-                    System.out.println(text.substring(matcher3.start(), matcher3.end()));
+                    String hoursPerTask = text.substring(matcher3.start(), matcher3.end());
+                    System.out.println("Worked per Task: " + hoursPerTask);
                 }
             } catch (Exception e) {
                 System.out.println("Something went wrong.");

@@ -18,13 +18,12 @@ public class api {
         URL apiURL = new URL("http://www.strokypozovnoidavnosti.in.ua/api/product/read_one.php?article="+arg1);
         URLConnection yc = apiURL.openConnection();
         BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
-        //String inputLine = in.readLine();
-        String inputLine = "{}";
+        String inputLine = in.readLine();
         System.out.println("Всё что с JSON пришло: "+inputLine);
-                in.close();
+        in.close();
 
         try {
-            JSONObject obj = new JSONObject(inputLine); //comment
+            JSONObject obj = new JSONObject(inputLine);
             String ID1 = obj.getString("id");
             System.out.println("ID: "+ID1);
         } catch (Exception e) {
